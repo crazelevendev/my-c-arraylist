@@ -27,7 +27,7 @@ char isArrayFull(ArrayList* list) {
     if (list->size < list->capacity) return 0;
     else {
         printf("The array is full\n");
-        return 0;
+        return 1;
     }
 }
 
@@ -63,16 +63,19 @@ void insertInArrayAt(ArrayList* list, size_t position, int value) {
 
 int main(void) {
     int test = 15;
-    ArrayList* list = createArray(3);
+    ArrayList* list = createArray(5);
 
     appendToArray(list, test);
     int element = getArrayElement(list, 0);
     printf("%d\n", element);
     appendToArray(list, 800000);
+    appendToArray(list, 1);
+    appendToArray(list, 2);
     insertInArrayAt(list, 1, 69);
     printf("%d\n", getArrayElement(list, 1));
     printf("%d\n", getArrayElement(list, 2));
-    appendToArray(list, 1);
+    printf("%d\n", getArrayElement(list, 3));
+    printf("%d\n", getArrayElement(list, 4));
     free(list->data);
     free(list);
     return 0;
