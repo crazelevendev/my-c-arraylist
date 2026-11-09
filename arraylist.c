@@ -8,14 +8,14 @@
 
 typedef struct {
 	size_t size;
-	uint32_t capacity;
+	size_t capacity;
 	int* data;
 } ArrayList;
 
 ArrayList* createArray(uint32_t capacity) {
 	if (capacity == 0) exit(-1);
 	ArrayList* list = (ArrayList*) malloc(sizeof(ArrayList));
-	if (&list == NULL) exit(-1);
+	if (list == NULL) exit(-1);
 	list->size = 0;
 	list->capacity = capacity;
 	list->data = malloc(sizeof(int) * capacity);
@@ -43,6 +43,7 @@ int getArrayElement(ArrayList* list, size_t position) {
 	if (list->size > 0 && position < list->capacity) {
 		return *(list->data + position);
 	}
+	return -0;
 }
 
 void insertInArrayAt(ArrayList* list, size_t position, int value) {
@@ -53,7 +54,7 @@ void insertInArrayAt(ArrayList* list, size_t position, int value) {
 		printf("Index for insert is out of range");
 		return;
 	}
-	for (int i = list->size; i > position; i--) {
+	for (size_t i = list->size; i > position; i--) {
 		list->data[i] = list->data[i-1];
 	}
 	list->data[position] = value;
